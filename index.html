@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجز الفنادق | الرئيسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="welcome-popup" id="welcomePopup">
+        <div class="welcome-content">
+            <div class="welcome-header">
+                <h2>مرحباً بك في موقع حجز الفنادق</h2>
+                <p class="subtitle">اكتشف أفضل الفنادق واحجز إقامتك بكل سهولة</p>
+            </div>
+            <button class="welcome-btn" onclick="closeWelcome()">ابدأ الحجز</button>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <h1>حجز الفنادق</h1>
+            <p>اكتشف أفضل الفنادق واحجز إقامتك بأفضل الأسعار</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="hotels-grid" id="hotelsGrid"></div>
+
+        <!-- نافذة تفاصيل الفندق -->
+        <div id="hotelModal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <div id="hotelDetails"></div>
+                <div class="booking-form" id="bookingForm" style="display: none;">
+                    <h3>حجز الغرفة</h3>
+                    <form onsubmit="submitBooking(event)">
+                        <div class="form-group">
+                            <label for="name">الاسم الكامل:</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني:</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف:</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>تاريخ الوصول والمغادرة:</label>
+                            <div class="calendar-container">
+                                <div class="calendar">
+                                    <div class="calendar-header">
+                                        <button type="button" onclick="prevMonth()">&#10094;</button>
+                                        <span id="currentMonth"></span>
+                                        <button type="button" onclick="nextMonth()">&#10095;</button>
+                                    </div>
+                                    <table class="calendar-table">
+                                        <thead>
+                                            <tr>
+                                                <th>الأحد</th>
+                                                <th>الإثنين</th>
+                                                <th>الثلاثاء</th>
+                                                <th>الأربعاء</th>
+                                                <th>الخميس</th>
+                                                <th>الجمعة</th>
+                                                <th>السبت</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="calendarBody"></tbody>
+                                    </table>
+                                </div>
+                                <div class="selected-dates">
+                                    <input type="hidden" id="checkIn" required>
+                                    <input type="hidden" id="checkOut" required>
+                                    <p>تاريخ الوصول: <span id="selectedCheckIn">غير محدد</span></p>
+                                    <p>تاريخ المغادرة: <span id="selectedCheckOut">غير محدد</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="roomType">نوع الغرفة:</label>
+                            <select id="roomType" required>
+                                <option value="">اختر نوع الغرفة</option>
+                                <option value="standard">قياسية</option>
+                                <option value="deluxe">ديلوكس</option>
+                                <option value="suite">جناح</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">عدد النزلاء:</label>
+                            <select id="guests" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">تأكيد الحجز</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
